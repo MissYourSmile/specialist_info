@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>用户登录</title>
+    {% load static %}
+    <script src="{% static "js/md5.js" %}" text="javascript"></script>
+    <script src="{% static "js/user.js" %}" text="javascript"></script>
+    <link rel="stylesheet" href="{% static "css/pure-mini.css" %}">
+    <link rel="stylesheet" href="{% static "css/base.css" %}">
+</head>
+
+<body>
+<form name="userinfo" class="pure-form pure-form-aligned form-center" action="/login/" method="POST" onsubmit="return login(this)">
+    {% csrf_token %}
+    <fieldset>
+        <h1>用户登录</h1>
+        <div class="pure-control-group">
+            <input name="username" id="username" type="text" placeholder="用户名">
+            <p id="username_error" class="error">{{no_user}}</p>
+        </div>
+        <div class="pure-control-group">
+            <input name="password" id="password" type="password" placeholder="密码">
+            <p id="password_error" class="error">{{error_pass}}</p>
+        </div>
+        <div class="pure-control-group">
+            <button type="submit" class="pure-button pure-button-primary">登录</button>
+        </div>
+        <div class="pure-control-group">
+            <a class="pure-button" href="/signin">注册</a>
+        </div>
+    </fieldset>
+</form>
+</body>
+</html>

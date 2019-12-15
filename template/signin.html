@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>用户注册</title>
+    {% load static %}
+    <script src="{% static "js/md5.js" %}" text="javascript"></script>
+    <script src="{% static "js/user.js" %}" text="javascript"></script>
+    <link rel="stylesheet" href="{% static "css/pure-mini.css" %}">
+    <link rel="stylesheet" href="{% static "css/base.css" %}">
+</head>
+
+<body>
+<form name="userinfo" class="pure-form pure-form-aligned form-center" action="/signin/" method="POST" onsubmit="return signin(this)">
+    {% csrf_token %}
+    <fieldset>
+        <h1>用户注册</h1>
+        <div class="pure-control-group">
+            <input name="username" id="username" type="text" placeholder="用户名：3-16位数字、字母、下划线">
+            <p id="username_error" class="error">{{tip}}</p>
+        </div>
+        <div class="pure-control-group">
+            <input name="password1" id="password1" type="password" placeholder="密码：6-18位数字、字母、下划线">
+            <p id="password1_error" class="error"></p>
+        </div>
+        <div class="pure-control-group">
+            <input name="password2" id="password2" type="password" placeholder="重复密码：重复上面的密码">
+            <p id="password2_error" class="error"></p>
+        </div>
+        <div class="pure-control-group">
+            <button type="submit" class="pure-button pure-button-primary">注册</button>
+        </div>
+        <div class="pure-control-group">
+            <a class="pure-button" href="/login">返回登录</a>
+        </div>
+    </fieldset>
+</form>
+</body>
+</html>

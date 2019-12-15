@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+    <link rel="stylesheet" href="{% static "css/pure-mini.css" %}">
+    <link rel="stylesheet" href="{% static "css/base.css" %}">
+    <link rel="stylesheet" href="{% static "css/side-menu.css" %}">
+    {% block mainhead %}
+    {% endblock mainhead %}
+</head>
+
+<body>
+<div id="layout" class="">
+    <p class="fr">
+        {% if level == '1' %}
+            用户：{{username}}
+        {% else %}
+            管理员：{{username}}
+        {% endif %}
+    </p>
+    <!-- Menu toggle -->
+    <a href="#menu" id="menuLink" class="menu-link">
+        <!-- Hamburger icon -->
+        <span></span>
+    </a>
+
+    <div id="menu" class="">
+        <div class="pure-menu">
+            <ul class="pure-menu-list">
+                <li class="pure-menu-item"><a href="/" class="pure-menu-link">主页</a></li>
+
+                {% if level == '2' %}
+                <li class="pure-menu-item menu-item-divided"><a href="#" class="pure-menu-link">信息采集</a></li>
+                <li class="pure-menu-item"><a href="#" class="pure-menu-link">信息管理</a></li>
+                {% elif level == '1' %}
+                <li class="pure-menu-item menu-item-divided"><a href="#" class="pure-menu-link">专家抽取</a></li>
+                <li class="pure-menu-item"><a href="#" class="pure-menu-link">项目管理</a></li>
+                {% endif %}
+
+                <li class="pure-menu-item menu-item-divided"><a href="/user" class="pure-menu-link">个人中心</a></li>
+                <li class="pure-menu-item"><a href="/logout" class="pure-menu-link">退出登录</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="main">
+        <div class="header">
+        {% block maintitle %}
+        {% endblock maintitle %}
+        </div>
+        <div class="content">
+        {% block mainbody %}
+        {% endblock mainbody %}
+        </div>
+    </div>
+</div>
+
+<script src="{% static "js/ui.js" %}" text="javascript"></script>
+</body>
+</html>

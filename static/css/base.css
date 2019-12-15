@@ -1,0 +1,33 @@
+.form-center {
+    margin: auto;
+    width: 24em;
+    color: #777;
+    text-align: center;
+}
+.form-center input,button,a {
+    width: 100%;
+}
+
+@media (max-width: 24em) {
+    .form-center {
+        width: 90%;
+    }
+}
+
+@media (max-width: 30em) {
+    .pure-input-1-2 {
+        width: 100% !important;
+    }
+}
+
+.error {
+    color: red;
+    font-size: 14px;
+    margin: 0;
+    float: left;
+}
+
+.fr {
+    float: right;
+    margin: 0 10px 0 0;
+}

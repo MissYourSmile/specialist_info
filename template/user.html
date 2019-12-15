@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block mainhead %}
+    {% load static %}
+    <script src="{% static "js/md5.js" %}" text="javascript"></script>
+    <script src="{% static "js/user.js" %}" text="javascript"></script>
+    <title>个人中心</title>
+{% endblock mainhead %}
+
+{% block maintitle %}
+    <h1>个人中心</h1>
+{% endblock maintitle %}
+
+{% block mainbody %}
+<form name="form1" class="pure-form pure-form-aligned form-center" 
+    action="/user/changeusername" method="POST" onsubmit="return change_username(this)">
+    {% csrf_token %}
+    <fieldset>
+        <div class="pure-control-group">
+            <input value="{{username}}" name="username" id="username" type="text" placeholder="用户名：3-16位数字、字母、下划线">
+            <p id="username_error" class="error">{{tip}}</p>
+        </div>
+        <div class="pure-control-group">
+            <button type="submit" class="pure-button pure-button-primary">修改用户名</button>
+        </div>
+    </fieldset>
+</form>
+
+<form name="form2" class="pure-form pure-form-aligned form-center" 
+    action="/user/changepassword" method="POST" onsubmit="return change_password(this)">
+    {% csrf_token %}
+    <fieldset>
+        <div class="pure-control-group">
+            <input name="password1" id="password1" type="password" placeholder="新密码：6-18位数字、字母、下划线">
+            <p id="password1_error" class="error"></p>
+        </div>
+        <div class="pure-control-group">
+            <input name="password2" id="password2" type="password" placeholder="重复密码：重复上面的密码">
+            <p id="password2_error" class="error"></p>
+        </div>
+        <div class="pure-control-group">
+            <button type="submit" class="pure-button pure-button-primary">修改密码</button>
+        </div>
+    </fieldset>  
+</form>
+{% endblock mainbody %}
