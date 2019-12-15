@@ -27,4 +27,5 @@ urlpatterns = [
     path('user/', base.user),
     path('user/changeusername', user.change_username),
     path('user/changepassword', user.change_password),
+    path('test/', base.test),
 ]

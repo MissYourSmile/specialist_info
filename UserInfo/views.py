@@ -24,7 +24,7 @@ def login(request):
     username = request.POST.get('username')
     password = encrypt(request.POST.get('password'))
 
-    # 判断用户是否已注册
+    # 判断用户是否存在
     objs = UserInfo.objects.filter(username=username)
     if not objs.exists():
         return render(request, 'login.html', {'no_user': '用户名不存在'})
