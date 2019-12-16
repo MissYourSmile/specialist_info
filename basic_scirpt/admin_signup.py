@@ -2,12 +2,11 @@
 """管理员注册脚本"""
 import sys
 import os
-import django
-
 import re
 import hashlib
 import getpass
 
+import django
 sys.path.append('../')
 os.environ['DJANGO_SETTINGS_MODULE'] = 'specialist_info.settings'
 django.setup()
