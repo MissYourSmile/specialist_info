@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 """生成虚拟专家数据"""
-import datetime
 import random
 import sys
 import os
@@ -16,6 +15,7 @@ from Specialist.models import Specialist
 NAMES = []
 
 def init():
+    """初始化"""
     f = open('name.txt', 'r')
     names = f.read()
     ret = names.split('   ')
