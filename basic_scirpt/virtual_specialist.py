@@ -23,6 +23,8 @@ def init():
         NAMES.append(i)
     f.close()
 
+    Specialist.objects.all().delete()
+
 def make_name():
     """生成随机姓名"""
     max_num = len(NAMES) - 1
@@ -30,7 +32,7 @@ def make_name():
 
 def make_sex():
     """生成随机性别"""
-    sex = ('male', 'female')
+    sex = ('男', '女')
     return sex[random.randint(0, 1)]
 
 def make_birth():

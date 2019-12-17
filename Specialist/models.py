@@ -1,5 +1,9 @@
 """专家信息模型"""
 from django.db import models
+from django import template
+
+
+register = template.Library()
 
 # Create your models here.
 class Specialist(models.Model):
@@ -32,3 +36,7 @@ class SpecialistCategory(models.Model):
     """
     key = models.CharField(max_length=8, primary_key=True)
     name = models.CharField(max_length=20)
+
+    @register.simple_tag
+    def get_category1(self):
+        return SpecialistCategory.objects.get(key=self.key[:2])

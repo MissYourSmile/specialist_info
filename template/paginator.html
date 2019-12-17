@@ -1,0 +1,18 @@
+<div>
+  <span>
+    <!--判断是否有上一页-->
+    {% if page.has_previous %}
+    <!--返回上一页的页码-->
+    <a class="pure-button" href="?page={{ page.previous_page_number }}">上一页</a>
+    {% endif %}
+    <span class="current">
+      <!--page.number：当前页的页码-->
+      <!--page.paginator.num_pages：关联Paginator对象，并得到总页数-->
+      第 {{ page.number }} 页，共 {{ page.paginator.num_pages }} 页
+    </span>
+    <!--返回下一页的页码-->
+    {% if page.has_next %}
+    <a class="pure-button" href="?page={{ page.next_page_number }}">下一页</a>
+    {% endif %}
+  </span>
+</div>

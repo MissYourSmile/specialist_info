@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+    <link rel="stylesheet" href="{% static "css/pure-mini.css" %}">
+    <link rel="stylesheet" href="{% static "css/base.css" %}">
+    <link rel="stylesheet" href="{% static "css/side-menu.css" %}">
+    <title>查看专家信息</title>
+</head>
+
+<body>
+<div class="pure-form pure-form-aligned form-center">
+    <div class="pure-control-group">
+        <label>姓名</label>
+        <label>{{specialist.name}}</label>
+    </div>
+
+    <div class="pure-control-group">
+        <label for="sex">性别</label>
+        <label>{{specialist.sex}}</label>
+    </div>
+
+    <div class="pure-control-group">
+        <label for="birth">出生日期</label>
+        <label>{{specialist.birth}}</label>
+    </div>
+
+    <div class="pure-control-group">
+        <label for="category">类别</label>
+        <label>{{specialist.category.name}}</label>
+    </div>
+    <div class="pure-control-group">
+        <label for="phone">手机号</label>
+        <label>{{specialist.phone}}</label>
+    </div>
+    <div class="pure-control-group">
+        <label for="email">邮箱</label>
+        <label>{{specialist.email}}</label>
+    </div>
+</div>
+</body>
+</html>

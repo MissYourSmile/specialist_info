@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block mainhead %}
+    <title>专家抽取</title>
+    {% load static %}
+    <script src="{% static "js/jquery.js" %}"></script>
+    <script src="{% static "js/category.js" %}" text="javascript"></script>
+    <script src="{% static "js/specialist.js" %}" text="javascript"></script>
+{% endblock mainhead %}
+
+{% block maintitle %}
+    <h1>专家抽取</h1>
+{% endblock maintitle %}
+
+{% block mainbody %}
+    <form class="pure-form pure-form-aligned form-left" action="/specialist/add/" method="POST" 
+        onsubmit="return add_specialist(this)">
+        {% csrf_token %}
+        <fieldset>
+            <div class="pure-control-group">
+                <label for="name">项目名称</label>
+                <input name="name" id="name" type="text" placeholder="姓名" required>
+            </div>
+
+            <div class="pure-control-group">
+                <label for="category">一级类别</label>
+                <select name="category1" id="category1" required>
+
+                </select>
+            </div>
+
+            <div class="pure-control-group">
+                <label for="category">二级类别</label>
+                <select name="category2" id="category2" required>
+
+                </select>
+            </div>           
+
+            <div class="pure-control-group">
+                <label></label>
+                <button class="pure-button pure-button-primary" type="submit">抽取</button>
+            </div>
+        </fieldset>
+    </form>
+{% endblock mainbody %}

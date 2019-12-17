@@ -31,4 +31,7 @@ urlpatterns = [
     path('test/', base.test),
     path('specialist/add/', speci.add_specialist),
     path('specialist/category/', speci.category),
+    path('specialist/list/', speci.list_specialist),
+    path('specialist/view/', speci.view_specialist),
+    path('specialist/del/', speci.del_specialist),
 ]
