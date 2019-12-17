@@ -19,7 +19,7 @@ def check_login(fun):
 def login(request):
     """登录"""
     if request.method == 'GET':
-        return render(request, 'login.html')
+        return render(request, 'login.html', {})
 
     username = request.POST.get('username')
     password = encrypt(request.POST.get('password'))
@@ -41,6 +41,7 @@ def login(request):
 
     return redirect('/')
 
+@check_login
 def logout(request):
     """登出"""
     del request.session['username']

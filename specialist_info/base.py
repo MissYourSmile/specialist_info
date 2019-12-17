@@ -29,20 +29,6 @@ def check_user(fun):
         return redirect('/')
     return inner
 
-def check_admin(fun):
-    """检测是否为管理员
-    用于管理员操作页面之前检测，主要为防止直接输入url跳转到无权访问的页面
-    - 如果是，则可以直接访问此页面
-    - 如果不是，跳转主页
-    """
-    @wraps(fun)
-    def inner(request, *arg, **kwargs):
-        level = request.session['login_status']
-        if level == '2':
-            return fun(request, *arg, **kwargs)
-        return redirect('/')
-    return inner
-
 @check_login
 @base
 def home(request, *arg):

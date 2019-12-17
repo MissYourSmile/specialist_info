@@ -543,7 +543,8 @@ td,th {
 .pure-form select {
     height: 2.25em;
     border: 1px solid #ccc;
-    background-color: #fff
+    background-color: #fff;
+    padding: 0 .6em;
 }
 
 .pure-form select[multiple] {

@@ -16,7 +16,7 @@
     {% csrf_token %}
     <fieldset>
         <div class="pure-control-group">
-            <input value="{{username}}" name="username" id="username" type="text" placeholder="用户名：3-16位数字、字母、下划线">
+            <input value="{{username}}" name="username" id="username" type="text" placeholder="用户名：3-16位数字、字母、下划线" required>
             <p id="username_error" class="error">{{tip}}</p>
         </div>
         <div class="pure-control-group">
@@ -30,11 +30,11 @@
     {% csrf_token %}
     <fieldset>
         <div class="pure-control-group">
-            <input name="password1" id="password1" type="password" placeholder="新密码：6-18位数字、字母、下划线">
+            <input name="password1" id="password1" type="password" placeholder="新密码：6-18位数字、字母、下划线" required>
             <p id="password1_error" class="error"></p>
         </div>
         <div class="pure-control-group">
-            <input name="password2" id="password2" type="password" placeholder="重复密码：重复上面的密码">
+            <input name="password2" id="password2" type="password" placeholder="重复密码：重复上面的密码" required>
             <p id="password2_error" class="error"></p>
         </div>
         <div class="pure-control-group">

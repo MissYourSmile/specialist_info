@@ -4,19 +4,35 @@
     color: #777;
     text-align: center;
 }
-.form-center input,button,a {
+.form-center input, .form-center button, .form-center a {
     width: 100%;
+}
+
+.form-left {
+    width: 60%;
+}
+.form-left input, .form-left button, .form-left a, .form-left select{
+    width: 60%;
+}
+.form-left label{
+    width: 30%!important;
 }
 
 @media (max-width: 24em) {
     .form-center {
         width: 90%;
     }
+    .form-left input, .form-left button, .form-left a, .form-left select{
+        width: 100%;
+    }
+    .form-left label{
+        width: 100%!important;
+    }
 }
 
-@media (max-width: 30em) {
-    .pure-input-1-2 {
-        width: 100% !important;
+@media (max-width: 64em) {
+    .form-left {
+        width: 90%;
     }
 }
 
@@ -25,6 +41,10 @@
     font-size: 14px;
     margin: 0;
     float: left;
+}
+
+.input-error {
+    border-color: red!important;
 }
 
 .fr {

@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from UserInfo import views as user
+from Specialist import views as speci
 from . import base
 
 urlpatterns = [
@@ -28,4 +29,6 @@ urlpatterns = [
     path('user/changeusername', user.change_username),
     path('user/changepassword', user.change_password),
     path('test/', base.test),
+    path('specialist/add/', speci.add_specialist),
+    path('specialist/category/', speci.category),
 ]
