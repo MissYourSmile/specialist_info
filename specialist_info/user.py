@@ -3,7 +3,7 @@ import hashlib
 from functools import wraps
 from django.shortcuts import render
 from django.shortcuts import redirect
-from UserInfo.models import UserInfo
+from Specialist.models import UserInfo
 
 # Create your views here.
 def check_login(fun):

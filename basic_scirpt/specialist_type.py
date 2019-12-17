@@ -1,5 +1,6 @@
-"""自动化生成数据库中的专家分类表"""
 #!/usr/bin/env python3
+"""自动化生成数据库中的专家分类表"""
+
 import re
 import docx
 
@@ -29,8 +30,6 @@ def main():
     """main"""
     doc = docx.Document('type_info.docx')
     for table in doc.tables:
-        for cell in table.columns[0].cells:
-            save(cell.text)
         for cell in table.columns[1].cells:
             save(cell.text)
 

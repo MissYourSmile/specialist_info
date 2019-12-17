@@ -15,8 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from UserInfo import views as user
-from Specialist import views as speci
+from . import user
+from . import specialist as speci
 from . import base
 
 urlpatterns = [

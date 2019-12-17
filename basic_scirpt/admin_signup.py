@@ -11,8 +11,8 @@ sys.path.append('../')
 os.environ['DJANGO_SETTINGS_MODULE'] = 'specialist_info.settings'
 django.setup()
 
-from UserInfo.views import encrypt
-from UserInfo.models import UserInfo
+from specialist_info.user import encrypt
+from Specialist.models import UserInfo
 
 def sign_up_admin(username, password):
     """两次加密注册

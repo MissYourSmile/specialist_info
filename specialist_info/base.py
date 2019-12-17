@@ -3,7 +3,7 @@
 from functools import wraps
 from django.shortcuts import render
 from django.shortcuts import redirect
-from UserInfo.views import check_login
+from .user import check_login
 
 def base(fun):
     """顶层html"""
