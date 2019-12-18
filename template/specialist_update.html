@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+    <link rel="stylesheet" href="{% static "css/pure-mini.css" %}">
+    <link rel="stylesheet" href="{% static "css/base.css" %}">
+    <link rel="stylesheet" href="{% static "css/side-menu.css" %}">
+    <script src="{% static "js/jquery.js" %}"></script>
+    <script src="{% static "js/category.js" %}" text="javascript"></script>
+    <script src="{% static "js/specialist.js" %}" text="javascript"></script>
+    <title>修改专家信息</title>
+</head>
+
+<body>
+<form class="pure-form pure-form-aligned form-left" action="/specialist/update/" method="POST" 
+    onsubmit="return update_respecial(this)">
+    {% csrf_token %}
+    <fieldset>
+        <div class="pure-control-group">
+            <label for="name">ID</label>
+            <input value="{{specialist.id}}" name="id" id="id" type="text" placeholder="id" required>
+        </div>
+
+        <div class="pure-control-group">
+            <label for="name">姓名</label>
+            <input value="{{specialist.name}}" name="name" id="name" type="text" placeholder="姓名" required disabled>
+        </div>
+
+        <div class="pure-control-group">
+            <label for="phone">手机号</label>
+            <input name="phone" id="phone" type="text" placeholder="手机号" value="{{specialist.phone}}" required>
+        </div>
+        <div class="pure-control-group">
+            <label for="email">邮箱</label>
+            <input name="email" id="email" type="text" placeholder="邮箱" value="{{specialist.email}}" required>
+        </div>
+
+        <div class="pure-control-group">
+            <label></label>
+            <button class="pure-button pure-button-primary" type="submit">保存修改</button>
+            <p class="error" id="error"></p>
+        </div>
+    </fieldset>
+</form>
+</body>
+</html>

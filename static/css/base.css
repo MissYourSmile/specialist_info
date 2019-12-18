@@ -51,3 +51,15 @@
     float: right;
     margin: 0 10px 0 0;
 }
+
+.detail-info {
+    width: 48em;
+    margin: auto;
+}
+
+@media (max-width: 24em) {
+    .detail-info {
+        width: 90%;
+        margin: auto;
+    }
+}

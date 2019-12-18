@@ -7,10 +7,11 @@ from django.http import HttpResponse
 from django.core.paginator import Paginator
 from django.core.paginator import PageNotAnInteger
 from django.core.paginator import EmptyPage
-from .user import check_login
 from Specialist.models import SpecialistCategory
 from Specialist.models import Specialist
 from specialist_info.base import base
+from .user import check_login
+
 
 # Create your views here.
 def check_admin(fun):
@@ -95,6 +96,22 @@ def add_specialist(request, *arg):
             )
         specialist.save()
         return render(request, 'specialist_add.html', arg[0])
+
+@check_login
+@check_admin
+def update_specialist(request):
+    """修改专家信息"""
+    if request.method == 'POST':
+        r_id = request.POST.get('id')
+        specialist = Specialist.objects.get(id=r_id)
+        specialist.phone = request.POST.get('phone')
+        specialist.email = request.POST.get('email')
+        specialist.save()
+        return redirect('/specialist/view?id=' + r_id)
+    response = {}
+    response['specialist'] = Specialist.objects.get(id=request.GET.get('id'))
+    return render(request, 'specialist_update.html', response)
+
 
 def category(request):
     """获取分类信息"""

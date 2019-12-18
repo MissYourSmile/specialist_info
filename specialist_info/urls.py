@@ -16,8 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from . import user
-from . import specialist as speci
+from . import specialist
 from . import base
+from . import project
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,10 +29,11 @@ urlpatterns = [
     path('user/', base.user),
     path('user/changeusername', user.change_username),
     path('user/changepassword', user.change_password),
-    path('test/', base.test),
-    path('specialist/add/', speci.add_specialist),
-    path('specialist/category/', speci.category),
-    path('specialist/list/', speci.list_specialist),
-    path('specialist/view/', speci.view_specialist),
-    path('specialist/del/', speci.del_specialist),
+    path('specialist/add/', specialist.add_specialist),
+    path('specialist/category/', specialist.category),
+    path('specialist/list/', specialist.list_specialist),
+    path('specialist/view/', specialist.view_specialist),
+    path('specialist/del/', specialist.del_specialist),
+    path('specialist/update/', specialist.update_specialist),
+    path('project/extract/', project.extract),
 ]

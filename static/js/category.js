@@ -11,8 +11,6 @@ $('document').ready( function () {
         },
         success:function(req){
             //请求成功时处理
-            $('#category').html("");
-            $("#category").prepend("<option value=0>请选择</option>");//添加第一个option值
             $.each(req, function(name, value) {
                 $("#category").append("<option value=" + name + ">" + value + "</option>");
             })

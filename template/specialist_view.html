@@ -12,34 +12,16 @@
 </head>
 
 <body>
-<div class="pure-form pure-form-aligned form-center">
-    <div class="pure-control-group">
-        <label>姓名</label>
-        <label>{{specialist.name}}</label>
-    </div>
-
-    <div class="pure-control-group">
-        <label for="sex">性别</label>
-        <label>{{specialist.sex}}</label>
-    </div>
-
-    <div class="pure-control-group">
-        <label for="birth">出生日期</label>
-        <label>{{specialist.birth}}</label>
-    </div>
-
-    <div class="pure-control-group">
-        <label for="category">类别</label>
-        <label>{{specialist.category.name}}</label>
-    </div>
-    <div class="pure-control-group">
-        <label for="phone">手机号</label>
-        <label>{{specialist.phone}}</label>
-    </div>
-    <div class="pure-control-group">
-        <label for="email">邮箱</label>
-        <label>{{specialist.email}}</label>
-    </div>
+<div class="detail-info">
+    <h1>专家信息</h1>
+    <h2>基本信息</h2>
+    <p>姓名：{{specialist.name}}</p>
+    <p>性别：{{specialist.sex}}</p>
+    <p>类别：{{specialist.category.name}}</p>
+    <p>出生年月：{{specialist.birth|date:"Y-m-d" }}</p>
+    <h2>联系方式</h2>
+    <p>手机：{{specialist.phone}}</p>
+    <p>邮箱：{{specialist.email}}</p>
 </div>
 </body>
 </html>
