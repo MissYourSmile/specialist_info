@@ -51,7 +51,9 @@ def del_specialist(request):
 def list_specialist(request, *arg):
     """专家分页列表"""
     page = request.GET.get('page')
-    specialist_list = Specialist.objects.all()
+    name = request.POST.get('name')
+    cate = request.POST.get('category')
+    specialist_list = get_specialist_list(name, cate)
     paginator = Paginator(specialist_list, 20)
     try:
         # 用于得到指定页面的内容
@@ -101,3 +103,18 @@ def category(request):
     for obj in objs:
         response[obj.key] = obj.name
     return HttpResponse(json.dumps(response))
+
+def get_specialist_list(name, cate):
+    if name or cate:
+        if name == '':
+            if cate == '0':
+                return Specialist.objects.all()
+            else:
+                return Specialist.objects.filter(category=cate)
+        else:
+            if cate == '0':
+                return Specialist.objects.filter(name__contains=name)
+            else:
+                return Specialist.objects.filter(name__contains=name).filter(category=cate)
+    else:
+        return Specialist.objects.all()

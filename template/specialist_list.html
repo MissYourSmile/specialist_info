@@ -3,6 +3,7 @@
 <title>信息管理</title>
 {% load static %}
 <script src="{% static "js/jquery.js" %}"></script>
+<script src="{% static "js/category.js" %}" text="javascript"></script>
 {% endblock mainhead %}
 
 {% block maintitle %}
@@ -10,6 +11,16 @@
 {% endblock maintitle %}
 
 {% block mainbody %}
+<form class="pure-form" action="/specialist/list/" method="POST">
+    {% csrf_token %}
+    <fieldset>
+    <input name="name" id="name" type="text" placeholder="输入姓名搜索">
+    <select name="category" id="category" required>
+
+    </select>
+    <button type="submit" class="pure-button pure-button-primary">筛选</button>
+    </fieldset>
+</form>
 <table class="pure-table" style="width: 100%;">
     <thead>
         <tr>
