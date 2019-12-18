@@ -36,4 +36,6 @@ urlpatterns = [
     path('specialist/del/', specialist.del_specialist),
     path('specialist/update/', specialist.update_specialist),
     path('project/extract/', project.extract),
+    path('project/view/', project.view_project),
+    path('project/list/', project.list_project),
 ]

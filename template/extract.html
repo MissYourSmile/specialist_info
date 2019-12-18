@@ -4,7 +4,7 @@
 {% load static %}
 <script src="{% static "js/jquery.js" %}"></script>
 <script src="{% static "js/category.js" %}" text="javascript"></script>
-<script src="{% static "js/specialist.js" %}" text="javascript"></script>
+<script src="{% static "js/extract.js" %}" text="javascript"></script>
 {% endblock mainhead %}
 
 {% block maintitle %}
@@ -12,20 +12,25 @@
 {% endblock maintitle %}
 
 {% block mainbody %}
-<form class="pure-form pure-form-aligned form-left" action="/specialist/add/" method="POST" 
-    onsubmit="return add_specialist(this)">
+<form class="pure-form pure-form-aligned form-left" action="/project/extract/" method="POST" 
+    onsubmit="return extract(this)" target="_blank">
     {% csrf_token %}
     <fieldset>
         <div class="pure-control-group">
             <label for="name">项目名称</label>
-            <input name="name" id="name" type="text" placeholder="姓名" required>
+            <input name="name" id="name" type="text" placeholder="项目名称" required>
         </div>
 
         <div class="pure-control-group">
             <label for="category">类别</label>
             <select name="category" id="category" required>
-                
+                <option value=0>请选择</option>
             </select>
+        </div>
+
+        <div class="pure-control-group">
+            <label for="num">人数</label>
+            <input name="num" id="num" type="number" value=1 placeholder="专家人数" required>
         </div>
 
         <div class="pure-control-group">

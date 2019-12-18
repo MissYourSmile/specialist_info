@@ -57,9 +57,17 @@
     margin: auto;
 }
 
-@media (max-width: 24em) {
+@media (max-width: 48em) {
     .detail-info {
         width: 90%;
         margin: auto;
     }
+}
+
+.info-box {
+    border: #aaa solid 1px;
+    display: block;
+    box-shadow:5px 5px 0 #aaa;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }

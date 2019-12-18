@@ -1,14 +1,16 @@
 """项目信息管理视图"""
 from functools import wraps
-import json
+from random import sample
 from django.shortcuts import render
 from django.shortcuts import redirect
 from django.http import HttpResponse
 from django.core.paginator import Paginator
 from django.core.paginator import PageNotAnInteger
 from django.core.paginator import EmptyPage
-from Specialist.models import SpecialistCategory
 from Specialist.models import Specialist
+from Specialist.models import Project
+from Specialist.models import ProjectSpecialist
+from Specialist.models import UserInfo
 from specialist_info.base import base
 from .user import check_login
 
@@ -26,10 +28,70 @@ def check_user(fun):
         return redirect('/')
     return inner
 
+@check_login
+@check_user
+@base
+def list_project(request, *arg):
+    """项目列表"""
+    page = request.GET.get('page')
+    username = request.session['username']
+    project_list = Project.objects.filter(owner=username)
+    paginator = Paginator(project_list, 20)
+    try:
+        # 用于得到指定页面的内容
+        current_page = paginator.page(page)
+        # 得到当前页的所有对象列表
+        projects = current_page.object_list
+    # 请求页码数值不是整数
+    except PageNotAnInteger:
+        current_page = paginator.page(1)
+        projects = current_page.object_list
+    # 请求页码数值为空或者在URL参数中没有page
+    except EmptyPage:
+        # paginator.num_pages返回的是页数
+        current_page = paginator.page(paginator.num_pages)
+        projects = current_page.object_list
+    arg[0]['page'] = current_page
+    arg[0]['projects'] = projects
+    return render(request, 'project_list.html', arg[0])
 
 @check_login
 @check_user
 @base
 def extract(request, *arg):
     """专家抽取"""
-    return render(request, 'extract.html', arg[0])
+    if request.method == 'GET':
+        return render(request, 'extract.html', arg[0])
+    if request.method == 'POST':
+        r_name = request.POST.get('name')
+        r_category = request.POST.get('category')
+        r_num = request.POST.get('num')
+        username = request.session['username']
+        specialist_list = list(Specialist.objects.filter(category=r_category))
+        specialist_list_len = len(specialist_list)
+        if specialist_list_len < int(r_num):
+            ret = '<h1>此分类仅有' + str(specialist_list_len) + '名专家</h1>'
+            return HttpResponse(ret)
+        ret_list = sample(specialist_list, int(r_num))
+        print(ret_list)
+        project = Project(name=r_name, owner=UserInfo.objects.get(username=username))
+        project.save()
+        for spec in ret_list:
+            project_spec_obj = ProjectSpecialist()
+            project_spec_obj.pid = project
+            project_spec_obj.sid = spec
+            project_spec_obj.comment = ''
+            project_spec_obj.save()
+        return redirect('/project/view?id=' + str(project.id))
+
+@check_login
+@check_user
+def view_project(request):
+    """项目详情"""
+    r_id = request.GET.get('id')
+    project = Project.objects.get(id=r_id)
+    specialist_list = ProjectSpecialist.objects.filter(pid=project)
+    response = {}
+    response['project'] = project
+    response['specialist_list'] = specialist_list
+    return render(request, 'project_view.html', response)

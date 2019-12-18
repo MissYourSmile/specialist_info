@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+    <link rel="stylesheet" href="{% static "css/pure-mini.css" %}">
+    <link rel="stylesheet" href="{% static "css/base.css" %}">
+    <link rel="stylesheet" href="{% static "css/side-menu.css" %}">
+    <link rel="stylesheet" href="{% static "css/base.css" %}">
+    <title>抽取结果</title>
+</head>
+
+<body>
+<div class="detail-info">
+    <h1>项目名称：{{project.name}}</h1>
+    <h2>创建者：{{project.owner.username}}</h2>
+    <h2>专家列表</h2>
+    {% for specialist in specialist_list %}
+    <ul id="{{ specialist.sid.id }}" class="info-box">
+        <li>姓名：{{ specialist.sid.name }}</li>
+        <li>性别：{{ specialist.sid.sex }}</li>
+        <li>出生年月：{{ specialist.sid.birth|date:"Y-m-d" }}</li>
+        <li>类别：{{ specialist.sid.category.name }}</li>
+        <li>手机：{{ specialist.sid.phone }}</li>
+        <li>邮箱：{{ specialist.sid.email }}</td>
+    </ul>
+    {% endfor %}
+</div>
+</body>
+</html>
