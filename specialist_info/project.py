@@ -95,3 +95,30 @@ def view_project(request):
     response['project'] = project
     response['specialist_list'] = specialist_list
     return render(request, 'project_view.html', response)
+
+@check_login
+@check_user
+def comment_project(request):
+    """项目详情"""
+    if request.method == 'POST':
+        project = Project.objects.get(id=request.POST.get('pid'))
+        specialist_list = ProjectSpecialist.objects.filter(pid=project)
+        for i, j in request.POST.items():
+            if i == 'pid' or i == 'csrfmiddlewaretoken':
+                continue
+            specialist = Specialist.objects.get(id=int(i))
+            obj = specialist_list.get(sid=specialist)
+            obj.comment = j
+            obj.save()
+        response = {}
+        response['project'] = project
+        response['specialist_list'] = specialist_list
+        return redirect('/project/comment?id=' + request.POST.get('pid'))
+
+    r_id = request.GET.get('id')
+    project = Project.objects.get(id=r_id)
+    specialist_list = ProjectSpecialist.objects.filter(pid=project)
+    response = {}
+    response['project'] = project
+    response['specialist_list'] = specialist_list
+    return render(request, 'project_comment.html', response)

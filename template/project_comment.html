@@ -9,27 +9,28 @@
     <link rel="stylesheet" href="{% static "css/base.css" %}">
     <link rel="stylesheet" href="{% static "css/side-menu.css" %}">
     <link rel="stylesheet" href="{% static "css/base.css" %}">
-    <title>抽取结果</title>
+    <title>专家评价</title>
 </head>
 
 <body>
 <div class="detail-info">
     <h1>项目名称：{{project.name}}</h1>
     <h2>创建者：{{project.owner.username}}</h2>
-    <h2>专家列表</h2>
+    <h2>专家评价</h2>
+    <form action="/project/comment/" method="POST">
+    {% csrf_token %}
+    <input name="pid" value="{{project.id}}" type="text" style="display:none" />
     {% for specialist in specialist_list %}
     <ul id="{{ specialist.sid.id }}" class="info-box">
         <li>姓名：{{ specialist.sid.name }}</li>
-        <li>性别：{{ specialist.sid.sex }}</li>
-        <li>出生年月：{{ specialist.sid.birth|date:"Y-m-d" }}</li>
-        <li>类别：{{ specialist.sid.category.name }}</li>
-        <li>手机：{{ specialist.sid.phone }}</li>
-        <li>邮箱：{{ specialist.sid.email }}</td>
+        <li>
+            评价：
+            <input value="{{specialist.comment}}" name="{{specialist.sid.id}}" />
+        </li>
     </ul>
     {% endfor %}
-
-    <a class="pure-button" href="/project/comment?id={{project.id}}">专家工作评价</a>
-    <a class="pure-button" href="/project/export?id={{project.id}}">导出为Word</a>
+    <button type="submit" class="pure-button pure-button-primary">提交</button>
+    </form>
 </div>
 </body>
 </html>
