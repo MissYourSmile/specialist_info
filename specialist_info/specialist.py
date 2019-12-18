@@ -9,6 +9,7 @@ from django.core.paginator import PageNotAnInteger
 from django.core.paginator import EmptyPage
 from Specialist.models import SpecialistCategory
 from Specialist.models import Specialist
+from Specialist.models import ProjectSpecialist
 from specialist_info.base import base
 from .user import check_login
 
@@ -33,7 +34,9 @@ def check_admin(fun):
 def view_specialist(request):
     """查看专家信息"""
     response = {}
-    response['specialist'] = Specialist.objects.get(id=request.GET.get('id'))
+    specialist = Specialist.objects.get(id=request.GET.get('id'))
+    response['specialist'] = specialist
+    response['projects'] = ProjectSpecialist.objects.filter(sid=specialist)
     return render(request, 'specialist_view.html', response)
 
 @check_login
