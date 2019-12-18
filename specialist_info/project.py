@@ -1,8 +1,8 @@
 """项目信息管理视图"""
-import docx
-import codecs
+
 from functools import wraps
 from random import sample
+import docx
 from django.shortcuts import render
 from django.shortcuts import redirect
 from django.http import HttpResponse
@@ -97,6 +97,16 @@ def view_project(request):
     response['project'] = project
     response['specialist_list'] = specialist_list
     return render(request, 'project_view.html', response)
+
+@check_login
+@check_user
+def del_project(request):
+    """项目删除"""
+    objs = Project.objects.filter(id=request.GET.get('id'))
+    if objs:
+        for obj in objs:
+            obj.delete()
+    return redirect('/project/list/')
 
 @check_login
 @check_user

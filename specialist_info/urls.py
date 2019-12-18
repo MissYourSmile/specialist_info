@@ -40,4 +40,5 @@ urlpatterns = [
     path('project/list/', project.list_project),
     path('project/comment/', project.comment_project),
     path('project/export/', project.export),
+    path('project/del/', project.del_project),
 ]
