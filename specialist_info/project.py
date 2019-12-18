@@ -1,4 +1,6 @@
 """项目信息管理视图"""
+import docx
+import codecs
 from functools import wraps
 from random import sample
 from django.shortcuts import render
@@ -122,3 +124,37 @@ def comment_project(request):
     response['project'] = project
     response['specialist_list'] = specialist_list
     return render(request, 'project_comment.html', response)
+
+@check_login
+@check_user
+def export(request):
+    # 根据 id 获取数据
+    r_id = request.GET.get('id')
+    project = Project.objects.get(id=r_id)
+    specialist_list = ProjectSpecialist.objects.filter(pid=project)
+    # 构造 HttpResponse
+    response = HttpResponse(content_type='text/docx')  # 指明下载的文件为csv格式
+    filename = 'Project.docx'
+    response['Content-Disposition'] = 'attachment; filename="{}"'.format(filename)
+    # 把内容写入文件
+    doc = docx.Document()
+    doc.add_heading(project.name, 0)
+    doc.add_heading(project.owner.username, 1)
+    table = doc.add_table(rows=1, cols=6)
+    hdr_cells = table.rows[0].cells
+    hdr_cells[0].text = '姓名'
+    hdr_cells[1].text = '性别'
+    hdr_cells[2].text = '出生年月'
+    hdr_cells[3].text = '类别'
+    hdr_cells[4].text = '手机'
+    hdr_cells[5].text = '邮箱'
+    for specialist in specialist_list:
+        row_cells = table.add_row().cells
+        row_cells[0].text = specialist.sid.name
+        row_cells[1].text = specialist.sid.sex
+        row_cells[2].text = specialist.sid.birth.strftime('%Y-%m-%d')
+        row_cells[3].text = specialist.sid.category.name
+        row_cells[4].text = specialist.sid.phone
+        row_cells[5].text = specialist.sid.email
+    doc.save(response)
+    return response

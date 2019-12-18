@@ -39,4 +39,5 @@ urlpatterns = [
     path('project/view/', project.view_project),
     path('project/list/', project.list_project),
     path('project/comment/', project.comment_project),
+    path('project/export/', project.export),
 ]
