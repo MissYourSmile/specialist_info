@@ -1,5 +1,24 @@
 # 专家信息管理与抽取系统
 
+## Quickly Start
+### 环境配置
+python3 + django + python-docx
+```sh
+sudo apt install python3 python3-pip
+pip3 install django python-docx
+```
+### 进入项目
+执行下面的命令，在浏览器中输入地址即可进入登陆页。
+```sh
+./manage.py runserver
+```
+
+### 管理员用户注册办法
+执行下面的命令，根据提示输入用户名和密码即可。
+```sh
+./manage.py createsuperuser
+```
+
 ## 任务要求
 为保证采购的公正、公平、公开，有关法律明确要求成立独立的采购专家库并通过随机抽取专家的方式来选取项目评审专家，本系统实现的功能有：
 1. 专家信息的采集；
